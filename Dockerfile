@@ -6,6 +6,6 @@ COPY . /usr/share/nginx/html
 # Remove the Dockerfile itself from the served files
 RUN rm /usr/share/nginx/html/Dockerfile
 
-EXPOSE 80
+EXPOSE 7860
 
 CMD ["nginx", "-g", "daemon off;"]

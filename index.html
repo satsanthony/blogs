@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dimension Unlimited | AI Intelligence for Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f7f4;
+    --paper: #f2f0eb;
+    --ink: #1a1814;
+    --ink-mid: #3d3a34;
+    --ink-light: #7a7670;
+    --ink-dim: #b0aca4;
+    --rule: #e2dfd8;
+    --accent: #1a3a5c;
+    --accent2: rgba(26,58,92,0.08);
+    --accent3: rgba(26,58,92,0.15);
+    --tag-bg: #eef2f7;
+    --tag-color: #1a3a5c;
+    --gold: #8a6f3e;
+    --gold-dim: rgba(138,111,62,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER / NAV ── */
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--white);
+    padding: 7rem 3rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; gap: 2.5rem; }
+    .site-nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+  }
+
+  .hero-left {}
+
+  .hero-kicker {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-kicker::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 460px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--accent);
+    padding: 12px 24px;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+
+  .hero-cta:hover { background: #0f2440; }
+
+  .hero-right {
+    background: var(--off-white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent), var(--gold));
+    border-radius: 4px 4px 0 0;
+  }
+
+  .mission-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 1.25rem;
+  }
+
+  .mission-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .mission-pillars {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mission-pillars li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  .pillar-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* ── DIVIDER ── */
+  .section-rule {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    border: none;
+    border-top: 1px solid var(--rule);
+  }
+
+  @media (max-width: 780px) { .section-rule { padding: 0 1.5rem; } }
+
+  /* ── SECTION HEADER ── */
+  .section-head {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3.5rem 3rem 2rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 780px) { .section-head { padding: 2.5rem 1.5rem 1.5rem; } }
+
+  .section-head-left {}
+
+  .section-eyebrow {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 0.4rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .section-count {
+    font-size: 11px;
+    color: var(--ink-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── BLOG GRID ── */
+  .blog-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 3rem 5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 580px) { .blog-grid { grid-template-columns: 1fr; padding: 0 1.5rem 4rem; } }
+
+  /* Featured post - spans full width */
+  .blog-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (max-width: 700px) { .blog-card.featured { grid-template-columns: 1fr; } }
+
+  .blog-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: box-shadow 0.25s, transform 0.25s;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.5s forwards;
+  }
+
+  .blog-card:nth-child(1) { animation-delay: 0.05s; }
+  .blog-card:nth-child(2) { animation-delay: 0.15s; }
+  .blog-card:nth-child(3) { animation-delay: 0.25s; }
+  .blog-card:nth-child(4) { animation-delay: 0.35s; }
+
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+  .blog-card:hover {
+    box-shadow: 0 8px 32px rgba(26,58,92,0.10);
+    transform: translateY(-2px);
+  }
+
+  /* Featured card image panel */
+  .card-visual {
+    background: var(--accent);
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-visual.v1 {
+    background: linear-gradient(135deg, #0f2440 0%, #1a3a5c 50%, #0d2035 100%);
+  }
+
+  .card-visual-pattern {
+    position: absolute; inset: 0;
+    opacity: 0.08;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px);
+  }
+
+  .card-visual-label {
+    position: relative; z-index: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.15);
+    font-style: italic;
+    letter-spacing: -0.02em;
+    user-select: none;
+    padding: 2rem;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .card-featured-badge {
+    position: absolute;
+    top: 1.25rem; left: 1.25rem;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* Card body */
+  .card-body {
+    padding: 1.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card.featured .card-body { padding: 2.25rem 2rem; justify-content: center; }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .card-tag {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 2px;
+    background: var(--tag-bg);
+    color: var(--tag-color);
+  }
+
+  .card-tag.gold { background: var(--gold-dim); color: var(--gold); }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s;
+  }
+
+  .blog-card.featured .card-title { font-size: 28px; }
+  .blog-card:hover .card-title { color: var(--accent); }
+
+  .card-excerpt {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.75;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 11px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .card-meta-left { display: flex; align-items: center; gap: 1rem; }
+  .card-author { color: var(--ink-mid); font-weight: 400; }
+
+  .card-read-more {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: gap 0.2s;
+  }
+
+  .blog-card:hover .card-read-more { gap: 8px; }
+
+  /* Coming soon card */
+  .blog-card.coming-soon {
+    background: var(--off-white);
+    border-style: dashed;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .blog-card.coming-soon:hover { box-shadow: none; transform: none; }
+
+  .soon-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 200px;
+  }
+
+  .soon-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .soon-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ink-dim);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .soon-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink-light);
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    background: var(--off-white);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 4rem 3rem;
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) {
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .about-strip { padding: 3rem 1.5rem; }
+  }
+
+  .about-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .about-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .about-role {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  .about-right {}
+
+  .about-bio {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .about-tag {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    padding: 5px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-mid);
+    background: var(--white);
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    padding: 2.5rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  @media (max-width: 780px) { .site-footer { padding: 2rem 1.5rem; } }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink-light);
+    text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--accent); }
+
+  .footer-copy {
+    font-size: 11px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-links {
+    display: flex; gap: 1.5rem; list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="/" class="nav-logo">Dimension<span>Unlimited</span></a>
+  <ul class="nav-links">
+    <li><a href="#posts">Articles</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:satish@dimensionunlimited.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-kicker">AI Intelligence for Business</p>
+    <h1>Where <em>Artificial Intelligence</em> meets business reality</h1>
+    <p class="hero-desc">Practical insight on AI strategy, governance, and engineering for business leaders and practitioners. Written by a practitioner, for practitioners. No hype, no jargon for its own sake.</p>
+    <a href="#posts" class="hero-cta">Read the articles &#8594;</a>
+  </div>
+  <div class="hero-right">
+    <p class="mission-label">Editorial Mission</p>
+    <p class="mission-text">"To demystify the advancement of AI and help business leaders make confident, informed decisions in a fast-moving field."</p>
+    <ul class="mission-pillars">
+      <li><span class="pillar-dot"></span>Translate complex AI engineering concepts into business language</li>
+      <li><span class="pillar-dot"></span>Cover AI governance, risk, and responsible deployment</li>
+      <li><span class="pillar-dot"></span>Track the evolution of agentic AI and what it means for enterprise</li>
+      <li><span class="pillar-dot"></span>Ground every insight in real tools, real data, and real decisions</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- BLOG POSTS -->
+<div class="section-head" id="posts">
+  <div class="section-head-left">
+    <p class="section-eyebrow">Published Articles</p>
+    <h2 class="section-title">Latest from the blog</h2>
+  </div>
+  <span class="section-count">1 of more to come</span>
+</div>
+
+<div class="blog-grid">
+
+  <!-- FEATURED POST -->
+  <a href="agent_harness/index.html" class="blog-card featured">
+    <div class="card-visual v1">
+      <div class="card-visual-pattern"></div>
+      <div class="card-visual-label">From Words<br>to Worlds</div>
+      <span class="card-featured-badge">Featured</span>
+    </div>
+    <div class="card-body">
+      <div class="card-tags">
+        <span class="card-tag">Agentic AI</span>
+        <span class="card-tag">Engineering</span>
+        <span class="card-tag gold">Deep Dive</span>
+      </div>
+      <h2 class="card-title">From Words to Worlds: The Rise of Agentic AI</h2>
+      <p class="card-excerpt">How the craft of working with AI evolved from prompt engineering in 2022 through context engineering in 2024, and into harness engineering in 2026. Told through a single real-world scenario: researching land investment across New York, California, and Texas.</p>
+      <div class="card-meta">
+        <div class="card-meta-left">
+          <span class="card-author">Satish and Claude</span>
+          <span>May 31, 2026</span>
+          <span>5 pages</span>
+        </div>
+        <span class="card-read-more">Read article &#8594;</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- COMING SOON 1 -->
+  <div class="blog-card coming-soon">
+    <div class="soon-body">
+      <p class="soon-label"><span class="soon-dot"></span>Coming soon</p>
+      <p class="soon-title">AI Governance Frameworks for Enterprise: A Practitioner's Guide</p>
+    </div>
+  </div>
+
+  <!-- COMING SOON 2 -->
+  <div class="blog-card coming-soon">
+    <div class="soon-body">
+      <p class="soon-label"><span class="soon-dot"></span>Coming soon</p>
+      <p class="soon-title">Red Teaming Large Language Models: What Business Leaders Need to Know</p>
+    </div>
+  </div>
+
+  <!-- COMING SOON 3 -->
+  <div class="blog-card coming-soon">
+    <div class="soon-body">
+      <p class="soon-label"><span class="soon-dot"></span>Coming soon</p>
+      <p class="soon-title">Building Multi-Agent Systems That Actually Work in Production</p>
+    </div>
+  </div>
+
+</div>
+
+<hr class="section-rule">
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <p class="about-label">The Author</p>
+      <h2 class="about-name">Satish</h2>
+      <p class="about-role">Enterprise AI Architect</p>
+    </div>
+    <div class="about-right">
+      <p class="about-bio">Enterprise AI Architect at Northrop Grumman and holder of the AIGP (Artificial Intelligence Governance Professional) certification. This blog is a practitioner's journal at the intersection of AI engineering, governance, and business strategy. Every article is written from the field, not the sidelines. Topics span agentic AI architecture, enterprise risk frameworks, multi-agent systems, responsible AI deployment, and the business implications of frontier model development.</p>
+      <div class="about-tags">
+        <span class="about-tag">AI Governance</span>
+        <span class="about-tag">Agentic AI</span>
+        <span class="about-tag">Enterprise Architecture</span>
+        <span class="about-tag">AIGP Certified</span>
+        <span class="about-tag">LLM Evaluation</span>
+        <span class="about-tag">Red Teaming</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="site-footer">
+    <a href="/" class="footer-logo">Dimension<span>Unlimited</span></a>
+    <p class="footer-copy">2026 DimensionUnlimited.com. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#posts">Articles</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

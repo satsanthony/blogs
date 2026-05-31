@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Words to Worlds: The Rise of Agentic AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #010101;
+    --bg2: #0a0c0f;
+    --bg3: #111418;
+    --border: rgba(126,184,212,0.10);
+    --border2: rgba(126,184,212,0.22);
+    --text: #ffffff;
+    --muted: #c0d4e4;
+    --dim: #7a9ab0;
+    --accent: #7eb8d4;
+    --accent2: rgba(126,184,212,0.10);
+    --accent3: rgba(126,184,212,0.20);
+    --title: #b8dff0;
+    --era1: #a3704a;
+    --era2: #c7c7c7;
+    --era3: #c9a84c;
+    --green: #6db89a;
+    --green-dim: rgba(109,184,154,0.10);
+    --red: #c07070;
+    --red-dim: rgba(192,112,112,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  /* BANNER */
+  .banner {
+    width: 100%; background: var(--bg);
+    padding: 4.5rem 2rem 3.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(126,184,212,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .banner-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 1.25rem; }
+  .banner h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.15; color: var(--title); margin-bottom: 0.5rem; }
+  .banner-byline { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.75rem; }
+  .banner-sub { font-size: 15px; color: var(--muted); max-width: 520px; margin: 0 auto 3.5rem; line-height: 1.75; }
+
+  /* Timeline */
+
+
+  /* Banner image */
+  .banner-image-wrap { margin: 0 auto 2rem; max-width: 860px; text-align: center; }
+  .banner-image { width: 100%; max-width: 860px; height: auto; border-radius: 10px; display: block; margin: 0 auto 1.25rem; border: 1px solid var(--border); }
+  .tl-formula { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); font-style: italic; }
+
+  /* Nav pills */
+  .nav-pills { display: flex; justify-content: center; gap: 0.85rem; flex-wrap: wrap; margin-top: 2rem; }
+  .nav-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 18px; border-radius: 6px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none;
+    border: 1px solid var(--border2); color: var(--muted);
+    background: var(--bg2); transition: all 0.2s;
+  }
+  .nav-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent2); }
+  .nav-pill.active { border-color: var(--accent); color: var(--accent); background: var(--accent2); }
+
+  /* CONTAINER */
+  .container { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+
+
+  /* Era-specific heading colors */
+  .era1 .era-title h2, .era1 .badge-year { color: var(--era1); }
+  .era2 .era-title h2, .era2 .badge-year { color: var(--era2); }
+  .era3 .era-title h2, .era3 .badge-year { color: var(--era3); }
+  .era1 .era-title .tagline { color: var(--era1); opacity: 0.75; }
+  .era2 .era-title .tagline { color: var(--era2); opacity: 0.75; }
+  .era3 .era-title .tagline { color: var(--era3); opacity: 0.75; }
+  .era1 .era-badge { background: rgba(163,112,74,0.10); border-color: rgba(163,112,74,0.3); }
+  .era2 .era-badge { background: rgba(199,199,199,0.08); border-color: rgba(199,199,199,0.25); }
+  .era3 .era-badge { background: rgba(201,168,76,0.10); border-color: rgba(201,168,76,0.3); }
+
+  /* Era blocks */
+  .era-block { margin-bottom: 5rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.5s forwards; }
+  .era-block:nth-child(1) { animation-delay: 0.05s; }
+  .era-block:nth-child(2) { animation-delay: 0.2s; }
+  .era-block:nth-child(3) { animation-delay: 0.35s; }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+  .era-header { display: flex; align-items: flex-start; gap: 1.1rem; margin-bottom: 1.5rem; }
+  .era-badge {
+    min-width: 64px; padding: 7px 10px;
+    border-radius: 6px; text-align: center; flex-shrink: 0;
+    background: var(--accent2); border: 1px solid var(--border2);
+  }
+  .badge-year { display: block; font-size: 11px; font-weight: 600; color: var(--accent); line-height: 1.3; }
+  .badge-era  { display: block; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-top: 2px; }
+
+  .era-title h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--title); line-height: 1.25; }
+  .era-title .tagline { font-size: 14px; color: var(--muted); font-style: italic; margin-top: 3px; }
+
+  .era-intro { font-size: 16px; color: var(--muted); line-height: 1.85; margin-bottom: 1.5rem; }
+
+  /* Prompt box */
+  .prompt-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 1.1rem 1.4rem; margin-bottom: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 12px; line-height: 1.9; color: var(--muted);
+    white-space: pre-wrap;
+  }
+  .box-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.5rem; }
+
+  /* Context stack */
+  .context-stack { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; }
+  .ctx-row { display: flex; gap: 10px; align-items: flex-start; padding: 0.7rem 1.2rem; border-bottom: 1px solid var(--border); font-size: 14px; line-height: 1.6; }
+  .ctx-row:last-child { border-bottom: none; }
+  .ctx-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .tag-sys  { background: var(--accent2); color: var(--accent); border: 1px solid var(--border2); }
+  .tag-rag  { background: rgba(109,184,154,0.10); color: var(--green); border: 1px solid rgba(109,184,154,0.2); }
+  .tag-tool { background: rgba(192,112,112,0.10); color: var(--red); border: 1px solid rgba(192,112,112,0.2); }
+  .tag-hist { background: rgba(126,184,212,0.06); color: var(--muted); border: 1px solid var(--border); }
+  .ctx-text { color: var(--muted); font-size: 14px; }
+
+  /* Flow steps */
+  .flow-steps { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; }
+  .flow-step { display: flex; gap: 12px; align-items: flex-start; padding: 0.8rem 1.2rem; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .flow-step:last-child { border-bottom: none; }
+  .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--accent2); border: 1px solid var(--border2); color: var(--accent); font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step-title { font-weight: 500; color: var(--text); font-size: 14px; }
+  .step-desc { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 1px; }
+
+  /* Pros/cons */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  @media (max-width: 580px) { .two-col { grid-template-columns: 1fr; } }
+  .pros-box, .cons-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; }
+  .pros-box { border-top: 2px solid var(--green); }
+  .cons-box { border-top: 2px solid var(--red); }
+  .box-head { font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .pros-box .box-head { color: var(--green); }
+  .cons-box .box-head { color: var(--red); }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .check-list li { font-size: 14px; color: var(--muted); display: flex; gap: 7px; line-height: 1.5; }
+  .check-list li .icon { flex-shrink: 0; margin-top: 2px; }
+  .pros-box .icon { color: var(--green); }
+  .cons-box .icon { color: var(--red); }
+
+  /* Divider */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+  /* Comparison table */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 1.5rem 0 3rem; }
+  .comp-table th { text-align: left; padding: 9px 13px; background: var(--bg3); color: var(--muted); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid var(--border2); }
+  .comp-table td { padding: 10px 13px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; line-height: 1.5; }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table td:first-child { color: var(--text); font-weight: 500; }
+  .comp-table td:nth-child(2) { color: rgba(126,184,212,0.55); }
+  .comp-table td:nth-child(3) { color: rgba(126,184,212,0.75); }
+  .comp-table td:nth-child(4) { color: var(--accent); }
+
+  /* Bottom nav cards */
+  .bottom-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 3.5rem; }
+  @media (max-width: 580px) { .bottom-nav { grid-template-columns: 1fr; } }
+  .nav-card { display: block; text-decoration: none; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem 1.5rem; transition: all 0.2s; position: relative; overflow: hidden; }
+  .nav-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--accent), transparent); }
+  .nav-card:hover { border-color: var(--border2); transform: translateY(-2px); background: var(--bg3); }
+  .nav-card-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.5rem; }
+  .nav-card h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--title); margin-bottom: 0.4rem; line-height: 1.3; }
+  .nav-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+  .nav-card .arrow { display: inline-block; margin-top: 0.85rem; font-size: 16px; color: var(--accent); transition: transform 0.2s; }
+  .nav-card:hover .arrow { transform: translateX(4px); }
+
+  .section-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <p class="banner-eyebrow">AI Engineering Series · 2022 to 2026</p>
+  <h1>From Words to Worlds:<br>The Rise of Agentic AI</h1>
+  <p class="banner-byline">By Satish &amp; Claude &nbsp;·&nbsp; May 31, 2026</p>
+  <p class="banner-sub">How the craft of working with AI evolved from compression artistry to infrastructure engineering, told through a single real-world scenario.</p>
+
+  <div class="banner-image-wrap">
+    <img src="agent_harness.png" alt="From Words to Worlds: The Rise of Agentic AI timeline" class="banner-image" />
+    <p class="tl-formula">Agent = Model + Harness</p>
+  </div>
+
+  <div class="nav-pills">
+    <a href="#prompt" class="nav-pill">Era 1 · Prompt Engineering</a>
+    <a href="#context" class="nav-pill">Era 2 · Context Engineering</a>
+    <a href="#harness" class="nav-pill active">Era 3 · Harness Engineering</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ERA 1 -->
+  <div class="era-block era1" id="prompt">
+    <div class="era-header">
+      <div class="era-badge">
+        <span class="badge-year">2022-23</span>
+        <span class="badge-era">Era 1</span>
+      </div>
+      <div class="era-title">
+        <h2>Prompt Engineering</h2>
+        <p class="tagline">"Craft the right words"</p>
+      </div>
+    </div>
+    <p class="era-intro">Token windows were tight - GPT-3.5 at 4K, GPT-4 launched at 8K. Every word in your prompt competed with every word in the response. The skill was compression: pack maximum intent into minimum space, shape output through precision instructions, and work around an RLHF-tuned model that defaulted to verbose disclaimers.</p>
+    <p class="box-label">The query - land research across NY, CA and TX (2023 style)</p>
+    <div class="prompt-box">You are a real estate investment advisor. Answer concisely.
+
+Compare buying RURAL LAND (not homes) across 3 states:
+NY | CA | TX
+
+For each state cover ONLY:
+1. Annual property tax rate (%)
+2. State capital gains tax on sale
+3. Top 1 gain
+4. Top 1 pitfall
+
+Format: markdown table. No preamble. No caveats.
+Current year: 2023.</div>
+    <p class="era-intro">Every element was deliberate. "You are a real estate advisor" primed the persona. "Not homes" prevented drift. "No preamble. No caveats" fought the model's verbose defaults. "Current year: 2023" compensated for a training cutoff two years prior.</p>
+    <div class="two-col">
+      <div class="pros-box">
+        <p class="box-head">Strengths</p>
+        <ul class="check-list">
+          <li><span class="icon">+</span>Zero infrastructure - just text</li>
+          <li><span class="icon">+</span>Fast iteration - rewrite and retry instantly</li>
+          <li><span class="icon">+</span>Portable across any model or interface</li>
+          <li><span class="icon">+</span>Role and format control shaped output reliably</li>
+          <li><span class="icon">+</span>No tooling cost or setup overhead</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <p class="box-head">Limitations</p>
+        <ul class="check-list">
+          <li><span class="icon">-</span>Tax rates from stale training data</li>
+          <li><span class="icon">-</span>No memory - every turn started fresh</li>
+          <li><span class="icon">-</span>County-level figures often hallucinated</li>
+          <li><span class="icon">-</span>One shot - no feedback loop or tools</li>
+          <li><span class="icon">-</span>Skill lived entirely in the human's head</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ERA 2 -->
+  <div class="era-block era2" id="context">
+    <div class="era-header">
+      <div class="era-badge">
+        <span class="badge-year">2024-25</span>
+        <span class="badge-era">Era 2</span>
+      </div>
+      <div class="era-title">
+        <h2>Context Engineering</h2>
+        <p class="tagline">"Curate the right information"</p>
+      </div>
+    </div>
+    <p class="era-intro">Token windows exploded - GPT-4 Turbo at 128K, Claude at 200K, Gemini at 1M. The bottleneck shifted from what you could ask to what you could inject. RAG and vector-based context engineering peaked in late 2024 and continues to evolve. The craft moved from writing tight prompts to architecting information pipelines that assembled the right knowledge before the model ever reasoned.</p>
+    <p class="box-label">The assembled context window - land research (2025 style)</p>
+    <div class="context-stack">
+      <div class="ctx-row"><span class="ctx-tag tag-sys">System</span><span class="ctx-text">You are a real estate research assistant. Always cite sources. Flag data older than 6 months. Never hallucinate tax rates.</span></div>
+      <div class="ctx-row"><span class="ctx-tag tag-rag">RAG</span><span class="ctx-text">USDA 2025: NY cropland $4,010/acre (+4.2% YoY) · TX cropland +5.4% · CA Prop 13 reassessment at purchase · NAR post-settlement avg commission 5.70%</span></div>
+      <div class="ctx-row"><span class="ctx-tag tag-rag">RAG</span><span class="ctx-text">IRS 2025: CA state cap gains 13.3% (highest in US) · NY 10.9% · TX $0 state capital gains</span></div>
+      <div class="ctx-row"><span class="ctx-tag tag-tool">Tools</span><span class="ctx-text">county_assessor_api · irs_capital_gains_calculator · nar_commission_lookup</span></div>
+      <div class="ctx-row"><span class="ctx-tag tag-hist">History</span><span class="ctx-text">User budget: $500K · Federal bracket: 37% · Preferred holding period: 5-7 years</span></div>
+    </div>
+    <p class="era-intro">The user's question stayed simple. The heavy lifting moved upstream - into vector databases, chunking strategies, re-ranking algorithms, and context assembly pipelines. The prompt engineer became an information architect.</p>
+    <div class="two-col">
+      <div class="pros-box">
+        <p class="box-head">Strengths</p>
+        <ul class="check-list">
+          <li><span class="icon">+</span>Live USDA and IRS data - no stale figures</li>
+          <li><span class="icon">+</span>User profile persisted across session turns</li>
+          <li><span class="icon">+</span>Tool definitions enabled structured lookups</li>
+          <li><span class="icon">+</span>Grounded answers with source attribution</li>
+          <li><span class="icon">+</span>Large windows allowed rich multi-doc reasoning</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <p class="box-head">Limitations</p>
+        <ul class="check-list">
+          <li><span class="icon">-</span>Poor chunking could break tax tables mid-document</li>
+          <li><span class="icon">-</span>Model answered and stopped - no autonomous action</li>
+          <li><span class="icon">-</span>Lost-in-the-middle problem with long contexts</li>
+          <li><span class="icon">-</span>No cross-session memory or persistent state</li>
+          <li><span class="icon">-</span>RAG pipeline quality determined everything</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ERA 3 -->
+  <div class="era-block era3" id="harness">
+    <div class="era-header">
+      <div class="era-badge">
+        <span class="badge-year">2026</span>
+        <span class="badge-era">Era 3</span>
+      </div>
+      <div class="era-title">
+        <h2>Harness Engineering</h2>
+        <p class="tagline">"Architect the right environment"</p>
+      </div>
+    </div>
+    <p class="era-intro">The model is no longer the bottleneck. The harness is: the runtime infrastructure surrounding the model that coordinates tool dispatch, verification loops, memory, guardrails, and audit logging. The user no longer writes a prompt. They define a mission. The agent executes. <em>Agent = Model + Harness</em> - where the model provides reasoning, and the harness acts as the state machine, memory boundary, and execution gateway.</p>
+    <p class="box-label">The execution flow - land research mission (2026 style)</p>
+    <div class="flow-steps">
+      <div class="flow-step"><div class="step-num">1</div><div><p class="step-title">Mission definition</p><p class="step-desc">User sets goal, constraints, budget ($500K), tax bracket (37%), holding period (5-7 yrs), and approval gates. No prompt written.</p></div></div>
+      <div class="flow-step"><div class="step-num">2</div><div><p class="step-title">Autonomous planning</p><p class="step-desc">Agent decomposes into subtasks: land values, property taxes, capital gains, commission, ROI model, sensitivity analysis, draft report.</p></div></div>
+      <div class="flow-step"><div class="step-num">3</div><div><p class="step-title">Execute and verify loop</p><p class="step-desc">Calls usda_land_values_api for NY ($4,010/acre), cross-verifies via web search, flags CA combined cap gains of 37.1% (federal 23.8% + CA 13.3%) as exceeding federal income tax rate.</p></div></div>
+      <div class="flow-step"><div class="step-num">4</div><div><p class="step-title">Conflict detection</p><p class="step-desc">TX article cites 5% price decline; USDA shows +5.4%. Harness triggers conflict resolution and does not proceed until resolved.</p></div></div>
+      <div class="flow-step"><div class="step-num">5</div><div><p class="step-title">Independent evaluation</p><p class="step-desc">Separate evaluator agent audits the ROI model. Generator and evaluator are deliberately isolated - models cannot reliably assess their own work.</p></div></div>
+      <div class="flow-step"><div class="step-num">6</div><div><p class="step-title">Human handoff</p><p class="step-desc">Delivers ROI spreadsheet (3 states, 3 scenarios), draft recommendation, 1 flagged TX conflict, and full audit log of every tool call and source.</p></div></div>
+    </div>
+    <div class="two-col">
+      <div class="pros-box">
+        <p class="box-head">Strengths</p>
+        <ul class="check-list">
+          <li><span class="icon">+</span>Multi-step autonomy - plan, execute, verify</li>
+          <li><span class="icon">+</span>Conflict detection before recommendations</li>
+          <li><span class="icon">+</span>Guardrails enforced at infrastructure level</li>
+          <li><span class="icon">+</span>Full audit log - every source, every call</li>
+          <li><span class="icon">+</span>Persistent state across sessions and agents</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <p class="box-head">Limitations</p>
+        <ul class="check-list">
+          <li><span class="icon">-</span>Multi-agent coordination at scale still hard</li>
+          <li><span class="icon">-</span>Cost governance - 40+ tool calls gets expensive</li>
+          <li><span class="icon">-</span>Real-world execution (deeds, filings) still human</li>
+          <li><span class="icon">-</span>Harness design requires distributed systems skill</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-label">Side-by-side comparison</p>
+  <table class="comp-table">
+    <thead><tr><th>Dimension</th><th>Prompt (2022-23)</th><th>Context (2024-25)</th><th>Harness (2026)</th></tr></thead>
+    <tbody>
+      <tr><td>Core question</td><td>What do I say?</td><td>What does it know?</td><td>What can it reliably do?</td></tr>
+      <tr><td>Land research</td><td>One compressed prompt</td><td>RAG-injected USDA and tax docs</td><td>Autonomous multi-step mission</td></tr>
+      <tr><td>Data freshness</td><td>Training cutoff (stale)</td><td>RAG pull at query time</td><td>Live tool calls, dual-verified</td></tr>
+      <tr><td>Memory</td><td>None</td><td>Session-level re-injection</td><td>Persistent cross-session state</td></tr>
+      <tr><td>Error handling</td><td>Rewrite the prompt</td><td>Re-chunk, re-embed</td><td>Retry, fallback, escalate, log</td></tr>
+      <tr><td>Human role</td><td>Writes every prompt</td><td>Designs retrieval pipelines</td><td>Defines mission, reviews output</td></tr>
+      <tr><td>Failure mode</td><td>Bad wording</td><td>Bad retrieval</td><td>Bad harness design</td></tr>
+      <tr><td>Skill metaphor</td><td>Assembly language</td><td>SQL / data architecture</td><td>Distributed systems / OS design</td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-label">Explore further</p>
+  <div class="bottom-nav">
+    <a href="land-research.html" class="nav-card">
+      <p class="nav-card-tag">Deep Dive · Case Study</p>
+      <h3>Buying Land in NY, CA and Texas</h3>
+      <p>Prices, taxes, capital gains, commissions, and the full 2019-2026 arc. The real-world data behind the scenario.</p>
+      <span class="arrow">&#8594;</span>
+    </a>
+    <a href="harness-frameworks.html" class="nav-card">
+      <p class="nav-card-tag">Tools and Frameworks</p>
+      <h3>Top 5 Agent Harness Frameworks</h3>
+      <p>LangGraph, CrewAI, AutoGen, Google ADK, and the OpenAI Agents SDK compared on architecture and production readiness.</p>
+      <span class="arrow">&#8594;</span>
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

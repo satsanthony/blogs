@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sources and References - Land Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0f12; --bg2: #121720; --bg3: #1a2030;
+    --border: rgba(126,184,212,0.10); --border2: rgba(126,184,212,0.22);
+    --text: #ffffff; --muted: #c0d4e4; --dim: #7a9ab0;
+    --accent: #7eb8d4; --accent2: rgba(126,184,212,0.10); --accent3: rgba(126,184,212,0.20);
+    --title: #b8dff0;
+    --green: #6db89a; --green-dim: rgba(109,184,154,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  .topnav { padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-size: 12px; color: var(--muted); transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); }
+  .breadcrumb { font-size: 11px; color: var(--dim); }
+
+  .hero { padding: 3.5rem 2rem 2.5rem; max-width: 900px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 900; color: var(--title); line-height: 1.2; margin-bottom: 0.75rem; }
+  .hero-sub { font-size: 15px; color: var(--muted); max-width: 560px; line-height: 1.75; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .section-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.65rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: var(--title); margin-bottom: 1.1rem; padding-bottom: 0.65rem; border-bottom: 1px solid var(--border); }
+  .source-group { margin-bottom: 2.75rem; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+  .source-card { display: flex; gap: 1rem; align-items: flex-start; padding: 0.95rem 1.2rem; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.75rem; background: var(--bg2); text-decoration: none; transition: border-color 0.2s; }
+  .source-card:hover { border-color: var(--border2); }
+
+  .source-num { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; border: 1px solid var(--border2); background: var(--accent2); color: var(--accent); margin-top: 2px; }
+  .source-num.green { background: var(--green-dim); border-color: rgba(109,184,154,0.25); color: var(--green); }
+
+  .source-body { flex: 1; min-width: 0; }
+  .source-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 2px; line-height: 1.4; }
+  .source-meta { font-size: 11px; color: var(--dim); margin-bottom: 5px; }
+  .source-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+  .source-link { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--border2); color: var(--accent); background: var(--accent2); transition: background 0.2s; }
+  .source-link:hover { background: var(--accent3); }
+
+  .disclaimer { background: var(--bg2); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0; padding: 1.1rem 1.4rem; font-size: 14px; color: var(--muted); line-height: 1.8; margin-top: 2rem; }
+  .disclaimer strong { color: var(--text); font-weight: 500; }
+
+  .nav-btn { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 500; border: 1px solid var(--border2); color: var(--muted); transition: all 0.2s; margin-top: 2.5rem; }
+  .nav-btn:hover { color: var(--text); background: var(--bg3); }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="land-research.html" class="back-link">&#8592; Back to Land Research</a>
+  <span class="breadcrumb">/ Sources and References</span>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">Transparency · Primary Sources</p>
+  <h1>Sources and References</h1>
+  <p class="hero-sub">All data cited in the Land Research page is drawn from government databases, federal reports, and established financial publications.</p>
+</div>
+
+<div class="container">
+
+  <div class="source-group">
+    <p class="section-eyebrow">Land price data</p>
+    <h2 class="section-title">USDA Farmland Values</h2>
+    <a href="https://esmis.nal.usda.gov/sites/default/release-files/pn89d6567/2n49w148w/m039n441h/land0825.pdf" target="_blank" class="source-card">
+      <div class="source-num">1</div>
+      <div class="source-body"><p class="source-title">USDA NASS Land Values 2025 Summary (Official Report)</p><p class="source-meta">USDA National Agricultural Statistics Service · August 2025</p><p class="source-desc">Primary federal source for US farmland values. Reports US farm real estate averaged $4,350/acre (+4.3%), cropland at $5,830/acre (+4.7%), and pasture at $1,920/acre (+4.9%). State-level breakdowns including NY cropland at $4,010/acre (+4.2%) and TX cropland +5.4%.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://www.nass.usda.gov/Publications/Highlights/2025/2025LandValuesCashRents_FINAL.pdf" target="_blank" class="source-card">
+      <div class="source-num">2</div>
+      <div class="source-body"><p class="source-title">USDA NASS 2025 Land Values Highlights (PDF)</p><p class="source-meta">USDA National Agricultural Statistics Service · December 2025</p><p class="source-desc">Companion highlights document with state-by-state cropland and pasture value tables. Source for TX Far West region (+15.8% YoY) and Northern Plains regional comparisons.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://www.fb.org/market-intel/real-estate-rising-farmland-values-hit-record-high" target="_blank" class="source-card">
+      <div class="source-num">3</div>
+      <div class="source-body"><p class="source-title">American Farm Bureau Federation: Farmland Values Hit Record High</p><p class="source-meta">American Farm Bureau Federation Market Intel · 2025</p><p class="source-desc">Independent analysis of the 2025 USDA Land Values Report. Confirms the fifth consecutive annual increase in agricultural land values and provides context on rising land values vs. softening commodity prices.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="source-group">
+    <p class="section-eyebrow">Annual property taxes</p>
+    <h2 class="section-title">Property Tax Rates by State</h2>
+    <a href="https://calclogix.com/library/california-property-tax-guide" target="_blank" class="source-card">
+      <div class="source-num green">4</div>
+      <div class="source-body"><p class="source-title">California Property Tax 2026: Prop 13, Prop 19, Mello-Roos and County Rates</p><p class="source-meta">CalcLogix · Updated February 2026</p><p class="source-desc">Comprehensive guide confirming the 2% annual assessment cap for existing owners, full market-value reassessment for new buyers, and effective rates of 1.15-1.35%+ when school bonds and Mello-Roos are included.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://www.empower.com/the-currency/life/california-proposition-13-proposition-19-what-to-know" target="_blank" class="source-card">
+      <div class="source-num green">5</div>
+      <div class="source-body"><p class="source-title">California Proposition 13 and 19: Property Tax Rules Explained</p><p class="source-meta">Empower / SacramentoCounty.gov · September 2025</p><p class="source-desc">Explains how Prop 13 rolled back assessments to 1975 values, set the 1% base rate, and capped annual increases at 2%. Confirms reassessment occurs only on change of ownership or new construction.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://www.appealdesk.com/blog/how-much-can-property-taxes-increase-texas" target="_blank" class="source-card">
+      <div class="source-num green">6</div>
+      <div class="source-body"><p class="source-title">Texas Property Tax Increases 2026: The 10% Homestead Cap Explained</p><p class="source-meta">AppealDesk · February 2026</p><p class="source-desc">Confirms Texas Tax Code Section 23.23 limits annual assessed value increases to 10% for qualified homestead properties. Direct comparison to California's 2% Prop 13 cap showing TX allows faster tax bill growth.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://www.fbcad.org/homestead-exemption-and-homestead-cap-explained/" target="_blank" class="source-card">
+      <div class="source-num green">7</div>
+      <div class="source-body"><p class="source-title">Texas Homestead Exemption and Homestead Cap Explained</p><p class="source-meta">Fort Bend Central Appraisal District (Official)</p><p class="source-desc">Official county appraisal district explanation of the 10% homestead cap under Texas Tax Code Section 23.23, with worked numerical examples. Confirms cap applies to assessed value, not market value, and resets upon sale.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://statecalc.com/property-tax/texas-property-tax-calculator/" target="_blank" class="source-card">
+      <div class="source-num green">8</div>
+      <div class="source-body"><p class="source-title">Texas Property Tax Calculator 2026</p><p class="source-meta">StateCalc · April 2026</p><p class="source-desc">Confirms Texas effective property tax rate averages 1.8% statewide and the $100,000 homestead exemption for owner-occupied primary residences.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="source-group">
+    <p class="section-eyebrow">Capital gains taxation</p>
+    <h2 class="section-title">State Capital Gains Tax Rates</h2>
+    <a href="https://universalpacific1031.com/california-capital-gains-tax-on-real-estate" target="_blank" class="source-card">
+      <div class="source-num">9</div>
+      <div class="source-body"><p class="source-title">California Capital Gains Tax on Real Estate 2025/2026</p><p class="source-meta">Universal Pacific 1031 Exchange · 2025</p><p class="source-desc">Confirms California taxes capital gains as ordinary income at the full state rate of up to 13.3% with no preferential long-term rate. Combined with federal rates, California residents can face total rates above 37% on maximum-bracket capital gains.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://ustax.tools/tax-by-state/california/" target="_blank" class="source-card">
+      <div class="source-num">10</div>
+      <div class="source-body"><p class="source-title">California Income Tax 2025-2026: Rates, Capital Gains and Property Tax</p><p class="source-meta">USTax.tools · 2025/2026</p><p class="source-desc">Confirms California's progressive income tax of 1-13.3% applies to capital gains with no preferential state rate. Notes combined federal and state rates can exceed 33% on long-term gains.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://www.realpha.com/blog/california-property-tax" target="_blank" class="source-card">
+      <div class="source-num">11</div>
+      <div class="source-body"><p class="source-title">California Property Tax 2026: New Buyer Impact</p><p class="source-meta">realpha · April 2026</p><p class="source-desc">Explains the Prop 13 reassessment mechanism from the buyer's perspective. Confirms new buyers in 2025/2026 face higher effective tax rates. Effective rates commonly run 1.15-1.35%+ in many ZIP codes.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="source-group">
+    <p class="section-eyebrow">Real estate commission</p>
+    <h2 class="section-title">NAR Settlement and Commission Rates</h2>
+    <a href="https://www.prnewswire.com/news-releases/agent-commissions-edge-higher-in-2025-one-year-after-landmark-nar-settlement-302483289.html" target="_blank" class="source-card">
+      <div class="source-num green">12</div>
+      <div class="source-body"><p class="source-title">Agent Commissions Edge Higher in 2025, One Year After Landmark NAR Settlement</p><p class="source-meta">PR Newswire / Clever Real Estate · June 2025</p><p class="source-desc">Confirms that despite 2024 seeing the lowest average commission in five years (5.32%), rates rebounded to near pre-settlement levels (~5.49%) by 2025. Commission rates increased in 39 states between 2024 and 2025.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://themortgagepoint.com/2025/05/16/measuring-the-impact-of-nar-settlements-on-agent-commissions/" target="_blank" class="source-card">
+      <div class="source-num green">13</div>
+      <div class="source-body"><p class="source-title">Measuring the Impact of the NAR Settlement on Agent Commissions</p><p class="source-meta">The MortgagePoint / Redfin data · May 2025</p><p class="source-desc">Redfin analysis showing average buyer's agent commission was 2.4% in Q1 2025, up slightly from 2.37% in Q4 2024. Confirms commissions inched higher for homes under $1M since August 2024 rule changes.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://www.kiplinger.com/real-estate/landmark-real-estate-commission-settlement-why-costs-havent-dropped" target="_blank" class="source-card">
+      <div class="source-num green">14</div>
+      <div class="source-body"><p class="source-title">Why a Landmark Real Estate Commission Settlement Has Not Lowered Costs</p><p class="source-meta">Kiplinger · September 2025</p><p class="source-desc">Independent analysis confirming the NAR's $418M settlement introduced structural changes but has not produced the 50% commission reduction many predicted. Documents the rebound in buyer agent commissions through Q1 2025.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+    <a href="https://www.onepercentlistings.com/post/how-real-estate-commission-works-in-2025" target="_blank" class="source-card">
+      <div class="source-num green">15</div>
+      <div class="source-body"><p class="source-title">Real Estate Commission Explained: 2025 NAR Lawsuit Impact</p><p class="source-meta">OnePercentListings · October 2025</p><p class="source-desc">Plain-language explanation of the two key changes effective August 17, 2024: removal of buyer agent compensation from MLS listings, and mandatory written buyer-agent agreements before property tours.</p><span class="source-link">View source &#8594;</span></div>
+    </a>
+  </div>
+
+  <div class="disclaimer">
+    <strong>A note on this research:</strong> All figures in the Land Research page are drawn from the primary sources listed above. Land prices, tax rates, and commission data reflect 2025/2026 conditions and are subject to change. State-level figures represent averages and regional ranges; county-level rates can vary significantly. This content is for informational and educational purposes only and does not constitute financial, tax, or legal advice. Consult a licensed real estate attorney, CPA, or financial advisor before making land investment decisions.
+  </div>
+
+  <a href="land-research.html" class="nav-btn">&#8592; Back to Land Research</a>
+
+</div>
+</body>
+</html>

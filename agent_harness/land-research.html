@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buying Land in NY, CA and Texas - 2019 to 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0f12; --bg2: #121720; --bg3: #1a2030;
+    --border: rgba(126,184,212,0.10); --border2: rgba(126,184,212,0.22);
+    --text: #ffffff; --muted: #c0d4e4; --dim: #7a9ab0;
+    --accent: #7eb8d4; --accent2: rgba(126,184,212,0.10); --accent3: rgba(126,184,212,0.20);
+    --title: #b8dff0;
+    --green: #6db89a; --green-dim: rgba(109,184,154,0.10);
+    --red: #c07070; --red-dim: rgba(192,112,112,0.10);
+    --ny: #7eb8d4; --ca: #6db89a; --tx: #a8c4a0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  .topnav { padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); }
+  .breadcrumb { font-size: 11px; color: var(--dim); }
+
+  .hero { padding: 3.5rem 2rem 2.5rem; max-width: 900px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 900; color: var(--title); line-height: 1.2; margin-bottom: 0.75rem; }
+  .hero-sub { font-size: 15px; color: var(--muted); max-width: 580px; line-height: 1.75; }
+  .state-pills { display: flex; gap: 0.65rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .state-pill { padding: 5px 14px; border-radius: 5px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; border: 1px solid; }
+  .pill-ny { background: var(--accent2); border-color: var(--border2); color: var(--accent); }
+  .pill-ca { background: var(--green-dim); border-color: rgba(109,184,154,0.25); color: var(--green); }
+  .pill-tx { background: rgba(168,196,160,0.08); border-color: rgba(168,196,160,0.2); color: var(--tx); }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .section-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.65rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: var(--title); margin-bottom: 0.75rem; }
+  .section-body { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 2rem; max-width: 720px; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+  /* Metric cards */
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3rem; }
+  @media (max-width: 640px) { .metrics-grid { grid-template-columns: 1fr; } .state-cols { grid-template-columns: 1fr !important; } }
+  .metric-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; border-top: 1px solid; }
+  .metric-card.ny { border-top-color: var(--ny); }
+  .metric-card.ca { border-top-color: var(--ca); }
+  .metric-card.tx { border-top-color: var(--tx); }
+  .metric-state { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .metric-card.ny .metric-state { color: var(--ny); }
+  .metric-card.ca .metric-state { color: var(--ca); }
+  .metric-card.tx .metric-state { color: var(--tx); }
+  .metric-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .metric-row:last-child { border-bottom: none; }
+  .metric-label { color: var(--muted); }
+  .metric-value { font-weight: 500; color: var(--text); font-size: 13px; }
+
+  /* State columns */
+  .state-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+  .state-col { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .state-col-head { padding: 0.65rem 1rem; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+  .state-col.ny .state-col-head { color: var(--ny); }
+  .state-col.ca .state-col-head { color: var(--ca); }
+  .state-col.tx .state-col-head { color: var(--tx); }
+  .state-col-body { padding: 0.8rem 1rem; font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .state-col-body strong { color: var(--text); font-weight: 500; display: block; font-size: 11px; margin-top: 0.6rem; margin-bottom: 1px; }
+  .state-col-body strong:first-child { margin-top: 0; }
+
+  /* Timeline table */
+  .tl-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 2.5rem; }
+  .tl-table th { text-align: left; padding: 9px 13px; background: var(--bg3); color: var(--muted); font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border2); }
+  .tl-table td { padding: 10px 13px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; line-height: 1.5; font-size: 12.5px; }
+  .tl-table tr:last-child td { border-bottom: none; }
+  .tl-table td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+
+  /* Commission */
+  .commission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+  @media (max-width: 600px) { .commission-grid { grid-template-columns: 1fr; } }
+  .comm-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.25rem; }
+  .comm-year { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.4rem; }
+  .comm-rate { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; }
+  .comm-rate.muted { color: var(--muted); }
+  .comm-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  /* Highlight box */
+  .highlight-box { background: var(--bg2); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0; padding: 1.1rem 1.4rem; margin-bottom: 2.5rem; }
+  .highlight-box p { font-size: 15px; color: var(--muted); line-height: 1.8; }
+  .highlight-box strong { color: var(--text); font-weight: 500; }
+
+  /* Pitfalls table */
+  .pitfalls-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 2.5rem; }
+  .pitfalls-table th { text-align: left; padding: 9px 13px; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border2); background: var(--bg3); color: var(--muted); }
+  .pitfalls-table th:nth-child(2) { color: var(--ny); }
+  .pitfalls-table th:nth-child(3) { color: var(--ca); }
+  .pitfalls-table th:nth-child(4) { color: var(--tx); }
+  .pitfalls-table td { padding: 10px 13px; border-bottom: 1px solid var(--border); color: var(--muted); line-height: 1.5; vertical-align: top; }
+  .pitfalls-table tr:last-child td { border-bottom: none; }
+  .pitfalls-table td:first-child { color: var(--text); font-weight: 500; }
+
+  /* Sources */
+  .sources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1.5rem; }
+  @media (max-width: 600px) { .sources-grid { grid-template-columns: 1fr; } }
+  .src-card { display: flex; gap: 10px; align-items: flex-start; padding: 0.9rem 1.1rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; transition: border-color 0.2s; }
+  .src-card:hover { border-color: var(--border2); }
+  .src-num { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; border: 1px solid var(--border2); color: var(--accent); background: var(--accent2); margin-top: 2px; }
+  .src-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; line-height: 1.4; }
+  .src-meta { font-size: 11px; color: var(--dim); margin-bottom: 3px; }
+  .src-desc { font-size: 11.5px; color: #506070; line-height: 1.5; }
+  .src-footer { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .src-footer p { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
+  .src-more-link { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 11px; font-weight: 500; border: 1px solid var(--border2); color: var(--accent); background: var(--accent2); white-space: nowrap; transition: background 0.2s; }
+  .src-more-link:hover { background: var(--accent3); }
+
+  /* Bottom nav */
+  .bottom-nav { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+  .nav-btn { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 500; border: 1px solid; transition: all 0.2s; }
+  .btn-back { border-color: var(--border2); color: var(--muted); }
+  .btn-back:hover { color: var(--text); background: var(--bg3); }
+  .btn-next { border-color: var(--border2); color: var(--accent); background: var(--accent2); }
+  .btn-next:hover { background: var(--accent3); }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="back-link">&#8592; Back to main</a>
+  <span class="breadcrumb">/ Buying Land in NY, CA and TX</span>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">Case Study · Real Estate · 2019-2026</p>
+  <h1>Buying Land in New York,<br>California and Texas</h1>
+  <p class="hero-sub">The real-world data behind the land research scenario - prices, taxes, capital gains, commissions, gains and pitfalls across the 2019 pre-COVID to 2026 arc.</p>
+  <div class="state-pills">
+    <span class="state-pill pill-ny">New York</span>
+    <span class="state-pill pill-ca">California</span>
+    <span class="state-pill pill-tx">Texas</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <p class="section-eyebrow">At a glance · 2025-2026 figures</p>
+  <div class="metrics-grid">
+    <div class="metric-card ny">
+      <p class="metric-state">New York</p>
+      <div class="metric-row"><span class="metric-label">Cropland (2025)</span><span class="metric-value">$4,010/acre</span></div>
+      <div class="metric-row"><span class="metric-label">YoY growth</span><span class="metric-value">+4.2%</span></div>
+      <div class="metric-row"><span class="metric-label">Median property tax</span><span class="metric-value">$6,043/yr</span></div>
+      <div class="metric-row"><span class="metric-label">Eff. rate (upstate)</span><span class="metric-value">2.0-3.0%</span></div>
+      <div class="metric-row"><span class="metric-label">State cap gains tax</span><span class="metric-value">10.9%</span></div>
+    </div>
+    <div class="metric-card ca">
+      <p class="metric-state">California</p>
+      <div class="metric-row"><span class="metric-label">Wine country per acre</span><span class="metric-value">$20K-$100K+</span></div>
+      <div class="metric-row"><span class="metric-label">Central Valley avg</span><span class="metric-value">$10K-$30K</span></div>
+      <div class="metric-row"><span class="metric-label">Prop 13 (existing)</span><span class="metric-value">~0.3%</span></div>
+      <div class="metric-row"><span class="metric-label">New buyer rate</span><span class="metric-value">1.0-1.35%+</span></div>
+      <div class="metric-row"><span class="metric-label">State cap gains tax</span><span class="metric-value">13.3%</span></div>
+    </div>
+    <div class="metric-card tx">
+      <p class="metric-state">Texas</p>
+      <div class="metric-row"><span class="metric-label">Cropland YoY</span><span class="metric-value">+5.4%</span></div>
+      <div class="metric-row"><span class="metric-label">Far West TX avg</span><span class="metric-value">$2,787/acre</span></div>
+      <div class="metric-row"><span class="metric-label">Eff. rate (Austin)</span><span class="metric-value">1.8-2.0%</span></div>
+      <div class="metric-row"><span class="metric-label">Homestead exemption</span><span class="metric-value">$100K</span></div>
+      <div class="metric-row"><span class="metric-label">State cap gains tax</span><span class="metric-value">$0</span></div>
+    </div>
+  </div>
+
+  <p class="section-eyebrow">Land price appreciation</p>
+  <h2 class="section-title">The 2019 to 2026 Arc</h2>
+  <p class="section-body">Following stabilization from 2014 to 2020, US farmland values began appreciating sharply in 2021 and continued through 2025. The 5-year CAGR from 2019 to 2024 was 5.8% nationally - or 2.0% after inflation adjustment. COVID-era remote work migration, institutional investment, and constrained supply drove the acceleration.</p>
+
+  <table class="tl-table">
+    <thead><tr><th>Period</th><th>National trend</th><th>New York</th><th>California</th><th>Texas</th></tr></thead>
+    <tbody>
+      <tr><td>2019 pre-COVID</td><td>Flat / stable. US avg ~$3,160/acre</td><td>Upstate NY rural land largely flat. Low buyer interest</td><td>Wine/coastal premium already high. Central Valley steady</td><td>Rural land affordable. Ranch demand moderate</td></tr>
+      <tr><td>2020-2021</td><td>COVID disruption then sharp surge begins</td><td>Remote work migration drives upstate demand +30-40%</td><td>Coastal exodus fuels Central Valley and inland price jumps</td><td>Austin-Hill Country explodes. Far West TX begins climbing</td></tr>
+      <tr><td>2022-2023</td><td>Continued appreciation. CAGR 5.8% annualized</td><td>Growth moderates. Interest rate pressure</td><td>Coastal areas cool but rural and ag land holds value</td><td>Strong across all regions. Institutional buyers enter</td></tr>
+      <tr><td>2024</td><td>Plateau. Values stable nationally</td><td>Slight softening. Supply still constrained</td><td>Holds value. Prop 13 advantage for long-term holders</td><td>Rural land cools slightly. Urban TX markets diverge</td></tr>
+      <tr><td>2025-2026</td><td>US avg $4,350/acre, +4.3% YoY</td><td>$4,010/acre cropland, +4.2% YoY</td><td>Premium land sustained. New buyer Prop 13 shock</td><td>+5.4% cropland. Far West TX +15.8% YoY</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <p class="section-eyebrow">Annual property taxes</p>
+  <h2 class="section-title">What You Pay Every Year</h2>
+  <p class="section-body">Property taxes are the most misunderstood cost in land ownership. California's Prop 13 creates a two-tier system where longtime owners pay a fraction of what new buyers pay. Texas has no income tax but compensates with higher effective property tax rates.</p>
+
+  <div class="state-cols">
+    <div class="state-col ny">
+      <div class="state-col-head">New York</div>
+      <div class="state-col-body">
+        <strong>Effective rate</strong>2.0-3.0% upstate; NYC anomalously low at ~0.9%
+        <strong>Median annual bill</strong>$6,043 - among the highest in the US
+        <strong>Key driver</strong>School district levies push upstate rural rates well above state average. No assessment cap comparable to Prop 13.
+        <strong>Watch</strong>High taxes deter long-term rural hold strategies. Factor carefully into 5-year ROI.
+      </div>
+    </div>
+    <div class="state-col ca">
+      <div class="state-col-head">California</div>
+      <div class="state-col-body">
+        <strong>Prop 13 (existing owners)</strong>Assessed value capped at 2% annual increase. Long-term owners may pay under 0.3%.
+        <strong>New buyer reality</strong>Full market-value reassessment on purchase. A $1.5M property carries $15,000-$16,500/yr for the new buyer.
+        <strong>The trap</strong>Effective rates of 1.15-1.35%+ when school bonds and Mello-Roos stack on top of the 1% base rate.
+        <strong>Watch</strong>Prop 13 locks in long-term holders - creates artificial scarcity and high entry prices.
+      </div>
+    </div>
+    <div class="state-col tx">
+      <div class="state-col-head">Texas</div>
+      <div class="state-col-body">
+        <strong>Effective rate</strong>1.8-2.5%. Rural counties can exceed 2.5%.
+        <strong>Homestead exemption</strong>$100K off school district taxable value - saves ~$1,300-$1,500/yr.
+        <strong>Assessment cap</strong>More permissive assessment cap (10% cap on homesteads vs. CA's strict 2% Prop 13 cap), meaning annual tax bills can climb faster as land value appreciates.
+        <strong>Watch</strong>Travis County (Austin) ~1.8-2.0%. Rural TX counties can run higher.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-eyebrow">Capital gains on sale</p>
+  <h2 class="section-title">The Exit Tax Divergence</h2>
+  <p class="section-body">On the same $500K gain, the after-tax outcome varies by over $66,000 depending solely on which state the land sits in. California taxes all capital gains as ordinary income - there is no preferential long-term rate at the state level.</p>
+
+  <div class="state-cols">
+    <div class="state-col ny">
+      <div class="state-col-head">New York · 10.9% state rate</div>
+      <div class="state-col-body">
+        <strong>On a $500K gain (37% federal bracket)</strong>Federal: $100,000 (20% LTCG + 3.8% NIIT)<br>NY State: $54,500 (10.9%)<br>Total: ~$154,500 (30.9% effective combined rate on the gain)
+        <strong>Note</strong>NYC residents face additional city tax. Rural land sellers avoid this.
+      </div>
+    </div>
+    <div class="state-col ca">
+      <div class="state-col-head">California · 13.3% state rate</div>
+      <div class="state-col-body">
+        <strong>On a $500K gain (37% federal bracket)</strong>Federal: $100,000 (20% LTCG + 3.8% NIIT)<br>CA State: $66,500 (13.3%)<br>Total: ~$166,500 (33.3% effective combined rate on the gain; marginal combined rate can reach 37.1%)
+        <strong>Note</strong>CA taxes all cap gains as ordinary income. Highest combined rate in the US.
+      </div>
+    </div>
+    <div class="state-col tx">
+      <div class="state-col-head">Texas · $0 state rate</div>
+      <div class="state-col-body">
+        <strong>On a $500K gain (37% federal bracket)</strong>Federal: $100,000 (20% LTCG + 3.8% NIIT)<br>TX State: $0<br>Total: ~$100,000 (20% combined)
+        <strong>Note</strong>No state income tax, no state capital gains tax. A $66,500 advantage over California on the same gain.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-eyebrow">Real estate commission</p>
+  <h2 class="section-title">The NAR Settlement Shift</h2>
+  <p class="section-body">The traditional 6% commission model - standard and largely non-negotiable in 2019 - was disrupted by the 2024 NAR antitrust settlement. Buyer-agent fees are now disclosed, negotiated, and paid separately.</p>
+
+  <div class="commission-grid">
+    <div class="comm-card">
+      <p class="comm-year">2019 - Pre-COVID standard</p>
+      <p class="comm-rate muted">~6.0%</p>
+      <p class="comm-desc">Traditional split: 3% to seller's agent, 3% to buyer's agent. Non-negotiable in most markets. Both sides paid by the seller. Industry standard enforced through MLS rules.</p>
+    </div>
+    <div class="comm-card">
+      <p class="comm-year">2026 - Post-NAR settlement</p>
+      <p class="comm-rate">~5.49%</p>
+      <p class="comm-desc">Commissions no longer listed on MLS. Buyers must sign written agreements before viewing properties. A brief post-settlement dip rebounded by early 2025. Rates rose in 39 of 50 states between 2024 and 2025.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>The bottom line on commissions:</strong> Despite widespread predictions of a 50% commission drop following the NAR settlement, the market largely absorbed the change. The real shift is structural - buyers now negotiate agent fees directly and separately, flat-fee models are growing, and the default assumption of a 6% seller-paid dual commission is gone. For land transactions specifically, rural property commissions often run 6-8% due to longer listing cycles and smaller buyer pools.</p>
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-eyebrow">Comparative risk matrix</p>
+  <h2 class="section-title">Gains and Pitfalls by State</h2>
+
+  <table class="pitfalls-table">
+    <thead><tr><th>Factor</th><th>New York</th><th>California</th><th>Texas</th></tr></thead>
+    <tbody>
+      <tr><td>Top gain</td><td>Accessible entry prices. Strong upstate appreciation post-2021. Proximity to NYC demand</td><td>Premium land appreciation. Prop 13 locks in low taxes for long-term holders</td><td>No state income or capital gains tax. Diverse land types. Strong institutional demand</td></tr>
+      <tr><td>Top pitfall</td><td>Among highest property tax rates in US. School district levies unpredictable</td><td>Prop 13 reassessment shock for new buyers. 13.3% exit tax erodes gains</td><td>More permissive 10% homestead assessment cap vs. CA's 2% - tax bills climb faster</td></tr>
+      <tr><td>Climate risk</td><td>Flooding (upstate), coastal vulnerability</td><td>Wildfire, drought - insurance costs rising sharply</td><td>Flooding, tornado corridor, drought in west TX</td></tr>
+      <tr><td>Zoning</td><td>Complex ag zoning. Environmental review required</td><td>Strictest in US - CEQA can delay development years</td><td>Relatively permissive. County-level variation</td></tr>
+      <tr><td>Exit tax (state)</td><td>10.9%</td><td>13.3% - highest in US</td><td>$0</td></tr>
+      <tr><td>5-yr ROI verdict</td><td>Moderate. High taxes compress net returns</td><td>Strong appreciation but exit tax and Prop 13 shock create entry/exit friction</td><td>Best net ROI at the 37% federal bracket - $0 state cap gains is decisive</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <p class="section-eyebrow">Sources and references</p>
+  <h2 class="section-title">The data is real. Here are the primary sources.</h2>
+
+  <div class="sources-grid">
+    <a href="https://esmis.nal.usda.gov/sites/default/release-files/pn89d6567/2n49w148w/m039n441h/land0825.pdf" target="_blank" class="src-card">
+      <span class="src-num">1</span>
+      <div><p class="src-title">USDA NASS Land Values 2025 Summary</p><p class="src-meta">USDA NASS - Aug 2025</p><p class="src-desc">Primary federal source. NY cropland $4,010/acre, TX +5.4%, US avg $4,350/acre.</p></div>
+    </a>
+    <a href="https://www.nass.usda.gov/Publications/Highlights/2025/2025LandValuesCashRents_FINAL.pdf" target="_blank" class="src-card">
+      <span class="src-num">2</span>
+      <div><p class="src-title">USDA NASS 2025 Land Values Highlights</p><p class="src-meta">USDA NASS - Dec 2025</p><p class="src-desc">State-by-state breakdowns including TX Far West region +15.8% YoY.</p></div>
+    </a>
+    <a href="https://calclogix.com/library/california-property-tax-guide" target="_blank" class="src-card">
+      <span class="src-num">3</span>
+      <div><p class="src-title">California Property Tax 2026: Prop 13, Prop 19, Mello-Roos</p><p class="src-meta">CalcLogix - Feb 2026</p><p class="src-desc">2% annual cap for existing owners, full reassessment for new buyers, effective rates 1.15-1.35%+.</p></div>
+    </a>
+    <a href="https://www.appealdesk.com/blog/how-much-can-property-taxes-increase-texas" target="_blank" class="src-card">
+      <span class="src-num">4</span>
+      <div><p class="src-title">Texas Property Tax: The 10% Homestead Cap</p><p class="src-meta">AppealDesk - Feb 2026</p><p class="src-desc">TX Tax Code Sec. 23.23: 10% annual assessed value cap vs. CA's 2% Prop 13 cap.</p></div>
+    </a>
+    <a href="https://www.prnewswire.com/news-releases/agent-commissions-edge-higher-in-2025-one-year-after-landmark-nar-settlement-302483289.html" target="_blank" class="src-card">
+      <span class="src-num">5</span>
+      <div><p class="src-title">Agent Commissions Edge Higher in 2025 Post NAR Settlement</p><p class="src-meta">Clever Real Estate - June 2025</p><p class="src-desc">Commission rates rebounded to ~5.49% in 2025. Rates rose in 39 of 50 states.</p></div>
+    </a>
+  </div>
+
+  <div class="src-footer">
+    <p>10 additional sources covering CA capital gains, TX homestead cap mechanics, NAR settlement impact, and Prop 13 new-buyer reassessment are documented in full.</p>
+    <a href="sources.html" class="src-more-link">View all 15 sources &#8594;</a>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="index.html" class="nav-btn btn-back">&#8592; Back to main</a>
+    <a href="harness-frameworks.html" class="nav-btn btn-next">Top 5 Agent Harnesses &#8594;</a>
+  </div>
+
+</div>
+</body>
+</html>

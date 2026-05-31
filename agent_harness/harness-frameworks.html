@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 5 Agent Harness Frameworks - 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0f12; --bg2: #121720; --bg3: #1a2030;
+    --border: rgba(126,184,212,0.10); --border2: rgba(126,184,212,0.22);
+    --text: #ffffff; --muted: #c0d4e4; --dim: #7a9ab0;
+    --accent: #7eb8d4; --accent2: rgba(126,184,212,0.10); --accent3: rgba(126,184,212,0.20);
+    --title: #b8dff0;
+    --green: #6db89a; --green-dim: rgba(109,184,154,0.10);
+    --red: #c07070; --red-dim: rgba(192,112,112,0.10);
+    --c1: #7eb8d4; --c2: #6db89a; --c3: #8ab0c4; --c4: #a8c4a0; --c5: #90a8c0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; }
+
+  .topnav { padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); }
+  .breadcrumb { font-size: 11px; color: var(--dim); }
+
+  .hero { padding: 3.5rem 2rem 2.5rem; max-width: 900px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 900; color: var(--title); line-height: 1.2; margin-bottom: 0.75rem; }
+  .hero-sub { font-size: 15px; color: var(--muted); max-width: 580px; line-height: 1.75; }
+  .formula-bar { display: flex; align-items: center; gap: 1.25rem; margin-top: 1.75rem; flex-wrap: wrap; }
+  .formula-token { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
+  .ft-agent { color: var(--title); }
+  .ft-model { color: var(--accent); }
+  .ft-harness { color: var(--accent); }
+  .formula-op { color: var(--dim); font-size: 20px; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .section-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.65rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: var(--title); margin-bottom: 1.1rem; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+  /* Layer table */
+  .layer-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 3rem; }
+  .layer-table th { text-align: left; padding: 9px 13px; background: var(--bg3); color: var(--muted); font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border2); }
+  .layer-table td { padding: 10px 13px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; line-height: 1.5; }
+  .layer-table tr:last-child td { border-bottom: none; }
+  .layer-table td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+  .layer-table td:nth-child(2) { color: var(--accent); font-size: 12px; }
+
+  /* Framework cards */
+  .fw-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    margin-bottom: 1.25rem;
+    opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s forwards;
+  }
+  .fw-card:nth-child(1) { animation-delay: 0.05s; }
+  .fw-card:nth-child(2) { animation-delay: 0.15s; }
+  .fw-card:nth-child(3) { animation-delay: 0.25s; }
+  .fw-card:nth-child(4) { animation-delay: 0.35s; }
+  .fw-card:nth-child(5) { animation-delay: 0.45s; }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+  .fw-card-top { display: flex; align-items: flex-start; gap: 1rem; padding: 1.1rem 1.4rem 1rem; border-bottom: 1px solid var(--border); position: relative; }
+  .fw-card-top::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; }
+  .fw-card.c1 .fw-card-top::before { background: var(--c1); }
+  .fw-card.c2 .fw-card-top::before { background: var(--c2); }
+  .fw-card.c3 .fw-card-top::before { background: var(--c3); }
+  .fw-card.c4 .fw-card-top::before { background: var(--c4); }
+  .fw-card.c5 .fw-card-top::before { background: var(--c5); }
+
+  .fw-rank { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; border: 1px solid var(--border2); background: var(--accent2); color: var(--accent); }
+  .fw-card.c2 .fw-rank { color: var(--c2); border-color: rgba(109,184,154,0.25); background: var(--green-dim); }
+  .fw-card.c4 .fw-rank { color: var(--c4); border-color: rgba(168,196,160,0.25); background: rgba(168,196,160,0.08); }
+
+  .fw-meta { flex: 1; }
+  .fw-name-row { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 3px; }
+  .fw-name { font-size: 16px; font-weight: 600; color: var(--title); }
+  .fw-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); background: var(--bg3); }
+  .fw-tagline { font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .fw-stats { display: flex; gap: 1.5rem; flex-shrink: 0; text-align: right; }
+  .stat-val { display: block; font-size: 14px; font-weight: 600; color: var(--text); }
+  .stat-lbl { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); margin-top: 1px; }
+
+  .fw-card-body { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+  @media (max-width: 600px) { .fw-card-body { grid-template-columns: 1fr; } .fw-stats { display: none; } }
+  .fw-col { padding: 0.9rem 1.4rem; }
+  .fw-col:first-child { border-right: 1px solid var(--border); }
+  .fw-col-label { font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.55rem; }
+  .fw-col.strengths .fw-col-label { color: var(--green); }
+  .fw-col.watchout  .fw-col-label { color: var(--red); }
+  .fw-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .fw-list li { font-size: 13.5px; color: var(--muted); display: flex; gap: 6px; line-height: 1.5; }
+  .fw-list li .dot { flex-shrink: 0; margin-top: 6px; width: 4px; height: 4px; border-radius: 50%; }
+  .strengths .dot { background: var(--green); }
+  .watchout  .dot { background: var(--red); }
+
+  .fw-land-use { padding: 0.85rem 1.4rem; background: var(--bg3); font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .fw-land-use strong { color: var(--text); font-weight: 500; }
+
+  /* Pick table */
+  .pick-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .pick-table th { text-align: left; padding: 9px 13px; background: var(--bg3); color: var(--muted); font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border2); }
+  .pick-table td { padding: 10px 13px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; line-height: 1.5; }
+  .pick-table tr:last-child td { border-bottom: none; }
+  .pick-table td:first-child { color: var(--text); font-weight: 500; }
+  .pick-table td:nth-child(2) { font-weight: 500; }
+  .r1 td:nth-child(2) { color: var(--c1); }
+  .r2 td:nth-child(2) { color: var(--c2); }
+  .r3 td:nth-child(2) { color: var(--c3); }
+  .r4 td:nth-child(2) { color: var(--c4); }
+  .r5 td:nth-child(2) { color: var(--c5); }
+
+  .bottom-nav { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
+  .nav-btn { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 500; border: 1px solid; transition: all 0.2s; }
+  .btn-back { border-color: var(--border2); color: var(--muted); }
+  .btn-back:hover { color: var(--text); background: var(--bg3); }
+  .btn-main { border-color: var(--border2); color: var(--accent); background: var(--accent2); }
+  .btn-main:hover { background: var(--accent3); }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="index.html" class="back-link">&#8592; Back to main</a>
+  <span class="breadcrumb">/ Top 5 Agent Harness Frameworks</span>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">Harness Engineering · Tools and Frameworks · 2026</p>
+  <h1>The Top 5 Agent<br>Harness Frameworks</h1>
+  <p class="hero-sub">Each framework takes a different architectural stance on orchestration, state, and multi-agent coordination. Evaluated through the NY/CA/TX land research mission.</p>
+  <div class="formula-bar">
+    <span class="formula-token ft-agent">Agent</span>
+    <span class="formula-op">=</span>
+    <span class="formula-token ft-model">Model</span>
+    <span class="formula-op">+</span>
+    <span class="formula-token ft-harness">Harness</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <p class="section-eyebrow">The five harness layers every framework must cover</p>
+  <table class="layer-table">
+    <thead><tr><th>Layer</th><th>What it does</th><th>Land research example</th></tr></thead>
+    <tbody>
+      <tr><td>Tool Orchestration</td><td>Manages tool call sequence; handles failures gracefully</td><td>USDA API times out - retry, fallback to cached source, log degradation, keep moving</td></tr>
+      <tr><td>Verification Loops</td><td>Separate Generator and Evaluator agents; models cannot self-audit reliably</td><td>ROI model produced by one agent, audited by an independent evaluator before handoff</td></tr>
+      <tr><td>Memory and State</td><td>Persistent state across multi-step workflows and sessions</td><td>TX conflict flag stored in step 3, surfaced automatically in step 6</td></tr>
+      <tr><td>Guardrails</td><td>Safety constraints enforced at infrastructure level, not prompt level</td><td>"No broker contact without approval" is a policy - cannot be reasoned around</td></tr>
+      <tr><td>Observability</td><td>Every tool call, source, and decision logged with timestamps</td><td>Full audit trail: which USDA endpoint called, which document retrieved, what evaluator flagged</td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-eyebrow">Framework deep-dives</p>
+
+  <div class="fw-card c1">
+    <div class="fw-card-top">
+      <div class="fw-rank">1</div>
+      <div class="fw-meta">
+        <div class="fw-name-row"><span class="fw-name">LangGraph</span><span class="fw-badge">Open Source</span><span class="fw-badge">Enterprise</span></div>
+        <p class="fw-tagline">Graph-based stateful workflow orchestration - the most battle-tested harness for production agentic systems.</p>
+      </div>
+      <div class="fw-stats"><div><span class="stat-val">34.5M</span><span class="stat-lbl">Monthly DLs</span></div><div><span class="stat-val">#1</span><span class="stat-lbl">Enterprise</span></div></div>
+    </div>
+    <div class="fw-card-body">
+      <div class="fw-col strengths">
+        <p class="fw-col-label">Strengths</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>Directed graph: agents and tools as nodes, transitions as edges</li>
+          <li><span class="dot"></span>Built-in checkpointing with time-travel debugging</li>
+          <li><span class="dot"></span>Human-in-the-loop approval gates natively supported</li>
+          <li><span class="dot"></span>LangSmith full observability and audit trails</li>
+          <li><span class="dot"></span>Model-agnostic - works with any LLM provider</li>
+        </ul>
+      </div>
+      <div class="fw-col watchout">
+        <p class="fw-col-label">Watch out for</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>Medium learning curve - graph concepts required upfront</li>
+          <li><span class="dot"></span>More verbose setup than CrewAI for simple tasks</li>
+          <li><span class="dot"></span>LangSmith observability is a paid add-on at scale</li>
+          <li><span class="dot"></span>Overkill for single-agent, single-task workflows</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fw-land-use"><strong>Land research fit:</strong> Ideal. Define each step as explicit graph nodes with conditional edges. Built-in checkpointing means the TX source conflict stalls execution at that exact node and resumes from there, not from scratch. LangSmith gives you the complete audit trail enterprise risk teams require.</div>
+  </div>
+
+  <div class="fw-card c2">
+    <div class="fw-card-top">
+      <div class="fw-rank">2</div>
+      <div class="fw-meta">
+        <div class="fw-name-row"><span class="fw-name">CrewAI</span><span class="fw-badge">Open Source</span></div>
+        <p class="fw-tagline">Role-based agent crews with intuitive task delegation - lowest barrier to entry, fastest path to a working prototype.</p>
+      </div>
+      <div class="fw-stats"><div><span class="stat-val">5.2M</span><span class="stat-lbl">Monthly DLs</span></div><div><span class="stat-val">Fastest</span><span class="stat-lbl">To prototype</span></div></div>
+    </div>
+    <div class="fw-card-body">
+      <div class="fw-col strengths">
+        <p class="fw-col-label">Strengths</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>Role-based DSL - Researcher, Analyst, Writer agents in ~20 lines</li>
+          <li><span class="dot"></span>Sequential and parallel task execution</li>
+          <li><span class="dot"></span>Native A2A protocol support for cross-framework interop</li>
+          <li><span class="dot"></span>Model-agnostic with active development velocity</li>
+          <li><span class="dot"></span>Largest community and example library of any framework</li>
+        </ul>
+      </div>
+      <div class="fw-col watchout">
+        <p class="fw-col-label">Watch out for</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>3x token overhead vs LangGraph on simple sequential flows</li>
+          <li><span class="dot"></span>State persistence is sequential, not graph-native</li>
+          <li><span class="dot"></span>Less precise control over conditional execution branching</li>
+          <li><span class="dot"></span>Checkpointing requires custom implementation</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fw-land-use"><strong>Land research fit:</strong> Strong for prototyping. Assign a Researcher agent (USDA and IRS data), a Tax Analyst agent (capital gains per state), and a Report Writer agent. Watch token costs at scale - parallel runs across all three states with verification loops can get expensive.</div>
+  </div>
+
+  <div class="fw-card c3">
+    <div class="fw-card-top">
+      <div class="fw-rank">3</div>
+      <div class="fw-meta">
+        <div class="fw-name-row"><span class="fw-name">Microsoft AutoGen / AG2</span><span class="fw-badge">Open Source</span><span class="fw-badge">Enterprise</span></div>
+        <p class="fw-tagline">Conversational multi-agent coordination - agents debate, build consensus, and coordinate via GroupChat. Best for adversarial verification.</p>
+      </div>
+      <div class="fw-stats"><div><span class="stat-val">AG2</span><span class="stat-lbl">Active fork</span></div><div><span class="stat-val">MSFT</span><span class="stat-lbl">Backed</span></div></div>
+    </div>
+    <div class="fw-card-body">
+      <div class="fw-col strengths">
+        <p class="fw-col-label">Strengths</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>GroupChat - agents debate and build consensus before acting</li>
+          <li><span class="dot"></span>Most diverse conversation patterns of any framework</li>
+          <li><span class="dot"></span>Code execution and tool use natively built-in</li>
+          <li><span class="dot"></span>Strong enterprise adoption via Microsoft stack</li>
+          <li><span class="dot"></span>AG2 community fork actively maintained and growing</li>
+        </ul>
+      </div>
+      <div class="fw-col watchout">
+        <p class="fw-col-label">Watch out for</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>Core AutoGen moved to maintenance mode at Microsoft</li>
+          <li><span class="dot"></span>In-memory state only - no native cross-session persistence</li>
+          <li><span class="dot"></span>AG2 fork active but ecosystem still consolidating</li>
+          <li><span class="dot"></span>GroupChat token costs can escalate on long debates</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fw-land-use"><strong>Land research fit:</strong> Best for the conflict detection step. When the TX price data conflict surfaces (USDA +5.4% vs. article -5%), a GroupChat of specialist agents can debate source authority and produce a consensus recommendation before escalating to the human. Adversarial verification is AutoGen's standout capability.</div>
+  </div>
+
+  <div class="fw-card c4">
+    <div class="fw-card-top">
+      <div class="fw-rank">4</div>
+      <div class="fw-meta">
+        <div class="fw-name-row"><span class="fw-name">Google Agent Development Kit (ADK)</span><span class="fw-badge">Cloud-native</span><span class="fw-badge">Open Source</span></div>
+        <p class="fw-tagline">Hierarchical agent trees optimized for Gemini - strongest for multimodal and GCP-native deployments.</p>
+      </div>
+      <div class="fw-stats"><div><span class="stat-val">A2A</span><span class="stat-lbl">Protocol native</span></div><div><span class="stat-val">GCP</span><span class="stat-lbl">Native</span></div></div>
+    </div>
+    <div class="fw-card-body">
+      <div class="fw-col strengths">
+        <p class="fw-col-label">Strengths</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>Hierarchical agent tree - parent/child orchestration native</li>
+          <li><span class="dot"></span>Pluggable session state backends (in-memory, DB, Cloud Spanner)</li>
+          <li><span class="dot"></span>A2A protocol interoperates with Salesforce, ServiceNow, and 50+ partners</li>
+          <li><span class="dot"></span>Multimodal - image, audio, document inputs native to Gemini</li>
+          <li><span class="dot"></span>Strong MCP tool integration out of the box</li>
+        </ul>
+      </div>
+      <div class="fw-col watchout">
+        <p class="fw-col-label">Watch out for</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>Optimized for Gemini - other models need extra config overhead</li>
+          <li><span class="dot"></span>GCP ecosystem lock-in risk for non-Google stacks</li>
+          <li><span class="dot"></span>Younger ecosystem - fewer community examples than LangGraph</li>
+          <li><span class="dot"></span>A2A interop adds architectural complexity for simple workflows</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fw-land-use"><strong>Land research fit:</strong> Excellent on a GCP/Gemini stack. A parent orchestrator agent manages three parallel child agents - one per state - each running USDA lookups, tax calculations, and assessor queries simultaneously. A2A interop means final output can push directly to enterprise systems like Salesforce or ServiceNow.</div>
+  </div>
+
+  <div class="fw-card c5">
+    <div class="fw-card-top">
+      <div class="fw-rank">5</div>
+      <div class="fw-meta">
+        <div class="fw-name-row"><span class="fw-name">OpenAI Agents SDK</span><span class="fw-badge">SDK</span><span class="fw-badge">Enterprise</span></div>
+        <p class="fw-tagline">Explicit handoffs and built-in guardrails - clean, opinionated, and well-suited for pythonic handoff-driven architectures.</p>
+      </div>
+      <div class="fw-stats"><div><span class="stat-val">Low</span><span class="stat-lbl">Learning curve</span></div><div><span class="stat-val">High</span><span class="stat-lbl">Prod ready</span></div></div>
+    </div>
+    <div class="fw-card-body">
+      <div class="fw-col strengths">
+        <p class="fw-col-label">Strengths</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>Explicit agent handoffs - deterministic, auditable routing</li>
+          <li><span class="dot"></span>Input/output guardrails built directly into the SDK</li>
+          <li><span class="dot"></span>Tracing and observability included out of the box</li>
+          <li><span class="dot"></span>Clean minimal API - very low boilerplate</li>
+          <li><span class="dot"></span>Context variables for passing typed state between agents</li>
+        </ul>
+      </div>
+      <div class="fw-col watchout">
+        <p class="fw-col-label">Watch out for</p>
+        <ul class="fw-list">
+          <li><span class="dot"></span>Primary support is for OpenAI APIs, though provider-agnostic and supports OpenAI-compatible endpoints</li>
+          <li><span class="dot"></span>Context variables ephemeral by default; cross-session persistence requires custom implementation</li>
+          <li><span class="dot"></span>Optimized for OpenAI API patterns; switching providers requires endpoint reconfiguration</li>
+          <li><span class="dot"></span>Less community flexibility than open-source alternatives</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fw-land-use"><strong>Land research fit:</strong> Clean and fast. Define a Triage agent routing to three specialist agents (NY, CA, TX Researcher), each handing off to a central Synthesizer. SDK guardrails enforce "no broker contact without approval" as a policy, not a prompt instruction. Best in class for lightweight, handoff-driven pythonic architectures.</div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-eyebrow">Quick pick guide</p>
+  <h2 class="section-title">Which harness for which situation?</h2>
+  <table class="pick-table">
+    <thead><tr><th>If your priority is...</th><th>Choose</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr class="r1"><td>Production reliability and full audit trail</td><td>LangGraph</td><td>Checkpointing, time-travel debug, LangSmith observability - the enterprise standard</td></tr>
+      <tr class="r2"><td>Fastest prototype, lowest code volume</td><td>CrewAI</td><td>Role-based DSL, 20 lines to a working multi-agent crew, largest community</td></tr>
+      <tr class="r3"><td>Multi-agent debate and adversarial verification</td><td>AutoGen / AG2</td><td>GroupChat conversation patterns unmatched for consensus-building workflows</td></tr>
+      <tr class="r4"><td>GCP / Gemini stack with multimodal needs</td><td>Google ADK</td><td>Native Gemini, A2A interop with enterprise systems, pluggable state backends</td></tr>
+      <tr class="r5"><td>Clean handoff-driven pythonic architecture</td><td>OpenAI Agents SDK</td><td>Explicit handoffs, guardrails in the SDK - best in class for lightweight pythonic architectures</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bottom-nav">
+    <a href="land-research.html" class="nav-btn btn-back">&#8592; Land Research</a>
+    <a href="index.html" class="nav-btn btn-main">&#8593; Back to main</a>
+  </div>
+
+</div>
+</body>
+</html>

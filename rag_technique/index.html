@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAG Types: What to Use and When | DimensionUnlimited</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f7f4;
+    --paper: #f2f0eb;
+    --ink: #1a1814;
+    --ink-mid: #3d3a34;
+    --ink-light: #7a7670;
+    --ink-dim: #b0aca4;
+    --rule: #e2dfd8;
+    --accent: #1a3a5c;
+    --accent2: rgba(26,58,92,0.08);
+    --accent3: rgba(26,58,92,0.15);
+    --tag-bg: #eef2f7;
+    --tag-color: #1a3a5c;
+    --gold: #8a6f3e;
+    --gold-dim: rgba(138,111,62,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER / NAV ── */
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── ARTICLE HEADER ── */
+  .article-header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 3rem 2rem;
+  }
+
+  @media (max-width: 780px) {
+    .article-header { padding: 2.5rem 1.5rem 1.5rem; }
+    .site-nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+  }
+
+  .article-eyebrow {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .article-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+
+  .article-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 13px;
+    color: var(--ink-light);
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── ARTICLE CONTENT ── */
+  .article-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 3rem 4rem;
+  }
+
+  @media (max-width: 780px) {
+    .article-content { padding: 2rem 1.5rem; }
+  }
+
+  .article-section {
+    margin-bottom: 3rem;
+  }
+
+  .article-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .article-section p {
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  .article-image {
+    max-width: 100%;
+    height: auto;
+    margin: 2.5rem 0;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+  }
+
+  /* ── TAGS ── */
+  .article-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .article-tag {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 2px;
+    background: var(--tag-bg);
+    color: var(--tag-color);
+  }
+
+  /* ── BACK LINK ── */
+  .article-footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 780px) {
+    .article-footer { padding: 2rem 1.5rem; }
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    transition: gap 0.2s;
+  }
+
+  .back-link:hover { gap: 12px; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    padding: 2.5rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 11px;
+    color: var(--ink-dim);
+  }
+
+  @media (max-width: 780px) { .site-footer { padding: 2rem 1.5rem; } }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink-light);
+    text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="../" class="nav-logo">Dimension<span>Unlimited</span></a>
+  <ul class="nav-links">
+    <li><a href="../#posts">Articles</a></li>
+    <li><a href="../#about">About</a></li>
+    <li><a href="mailto:satish@dimensionunlimited.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE HEADER -->
+<div class="article-header">
+  <p class="article-eyebrow">AI Engineering</p>
+  <h1 class="article-title">RAG Types: What to Use and When</h1>
+  <div class="article-meta">
+    <span>Satish and Claude</span>
+    <span>June 5, 2026</span>
+  </div>
+</div>
+
+<!-- ARTICLE CONTENT -->
+<article class="article-content">
+
+  <div class="article-section">
+    <div class="article-tags">
+      <span class="article-tag">Retrieval-Augmented Generation</span>
+      <span class="article-tag">AI Architecture</span>
+      <span class="article-tag">Engineering</span>
+    </div>
+    <p>Retrieval-Augmented Generation (RAG) has become foundational to building practical AI systems that ground responses in external knowledge. But RAG is not monolithic—different approaches serve different use cases. This guide explores the landscape of RAG techniques and how to choose the right approach for your specific problem.</p>
+  </div>
+
+  <div class="article-section">
+    <h2>Detailed RAG Type Classifications</h2>
+    <p>RAG systems can be classified by their architectural patterns, retrieval strategies, and reasoning capabilities. The taxonomy below shows how different RAG variations fit into broader families of approaches—from simple retrieval to sophisticated multi-hop reasoning over complex knowledge graphs.</p>
+    <img src="RAG_types.png" alt="Detailed RAG Types Classification" class="article-image">
+  </div>
+
+  <div class="article-section">
+    <h2>Understanding RAG Types and Their Use Cases</h2>
+    <p>The image below provides a comprehensive overview of different RAG types and their primary use cases. Each approach trades off complexity, latency, cost, and relevance. Understanding these tradeoffs is essential when designing systems that must retrieve and reason over large knowledge bases.</p>
+    <img src="RAG_types_use_cases.png" alt="RAG Types and Use Cases Overview" class="article-image">
+  </div>
+
+  <div class="article-section">
+    <h2>Choosing the Right RAG Approach</h2>
+    <p>Selecting a RAG strategy requires answering several key questions:</p>
+    <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--ink-mid);">
+      <li style="margin-bottom: 0.75rem;"><strong>What is the latency requirement?</strong> Simple retrieval is fast; complex reasoning is slower.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>How structured is your knowledge?</strong> Graph-based RAG excels with relational data; embedding-based RAG handles unstructured text.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>What reasoning depth is needed?</strong> Single-hop retrieval for simple lookup; multi-hop for complex inference.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>What is your operational budget?</strong> Indexing cost, query cost, and infrastructure complexity vary significantly.</li>
+    </ul>
+    <p>These considerations, combined with the taxonomies shown above, should guide your architecture decisions from prototype through production deployment.</p>
+  </div>
+
+</article>
+
+<!-- BACK LINK -->
+<div class="article-footer">
+  <a href="../" class="back-link">← Back to All Articles</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="site-footer">
+    <p>© 2026 DimensionUnlimited. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
